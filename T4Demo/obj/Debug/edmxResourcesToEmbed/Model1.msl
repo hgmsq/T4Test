@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="weixinDBModelStoreContainer" CdmEntityContainer="weixinDBEntities">
+    <FunctionImportMapping FunctionImportName="proc_CreateUser" FunctionName="weixinDBModel.Store.proc_CreateUser" />
+    <FunctionImportMapping FunctionImportName="proc_DelUser" FunctionName="weixinDBModel.Store.proc_DelUser" />
+    <FunctionImportMapping FunctionImportName="proc_UpdateUser" FunctionName="weixinDBModel.Store.proc_UpdateUser" />
+    <FunctionImportMapping FunctionImportName="proc_User" FunctionName="weixinDBModel.Store.proc_User" />
+    <FunctionImportMapping FunctionImportName="proc_User_count" FunctionName="weixinDBModel.Store.proc_User_count" />
+    <FunctionImportMapping FunctionImportName="proc_User_count_username" FunctionName="weixinDBModel.Store.proc_User_count_username" />
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="weixinDBModel.Contacts">
+        <MappingFragment StoreEntitySet="Contacts">
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Tel1" ColumnName="Tel1" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="weixinDBModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductCategorys">
+      <EntityTypeMapping TypeName="weixinDBModel.ProductCategorys">
+        <MappingFragment StoreEntitySet="ProductCategorys">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="weixinDBModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+          <ScalarProperty Name="Creater" ColumnName="Creater" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Instruction" ColumnName="Instruction" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="weixinDBModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Instruction" ColumnName="Instruction" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="weixinDBModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="TrueName" ColumnName="TrueName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WeiXinUserInfo">
+      <EntityTypeMapping TypeName="weixinDBModel.WeiXinUserInfo">
+        <MappingFragment StoreEntitySet="WeiXinUserInfo">
+          <ScalarProperty Name="AccessToken" ColumnName="AccessToken" />
+          <ScalarProperty Name="LastTokenDate" ColumnName="LastTokenDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserCount" ColumnName="UserCount" />
+          <ScalarProperty Name="AppSecret" ColumnName="AppSecret" />
+          <ScalarProperty Name="AppID" ColumnName="AppID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WXUserBaseInfo">
+      <EntityTypeMapping TypeName="weixinDBModel.WXUserBaseInfo">
+        <MappingFragment StoreEntitySet="WXUserBaseInfo">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="WXUserId" ColumnName="WXUserId" />
+          <ScalarProperty Name="groupid" ColumnName="groupid" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="subscribe_time" ColumnName="subscribe_time" />
+          <ScalarProperty Name="headimgurl" ColumnName="headimgurl" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+          <ScalarProperty Name="openid" ColumnName="openid" />
+          <ScalarProperty Name="subscribe" ColumnName="subscribe" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WXUserGroup">
+      <EntityTypeMapping TypeName="weixinDBModel.WXUserGroup">
+        <MappingFragment StoreEntitySet="WXUserGroup">
+          <ScalarProperty Name="WXUserId" ColumnName="WXUserId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductImgs">
+      <EntityTypeMapping TypeName="weixinDBModel.ProductImgs">
+        <MappingFragment StoreEntitySet="ProductImgs">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="PorductId" ColumnName="PorductId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

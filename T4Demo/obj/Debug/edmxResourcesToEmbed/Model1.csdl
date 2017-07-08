@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="weixinDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="weixinDBEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="proc_CreateUser">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="truename" Mode="In" Type="String" />
+      <Parameter Name="role" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_DelUser">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_UpdateUser">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_User">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="truename" Mode="InOut" Type="String" />
+      <Parameter Name="username" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_User_count" />
+    <FunctionImport Name="proc_User_count_username">
+      <Parameter Name="username" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Contacts" EntityType="weixinDBModel.Contacts" />
+    <EntitySet Name="Orders" EntityType="weixinDBModel.Orders" />
+    <EntitySet Name="ProductCategorys" EntityType="weixinDBModel.ProductCategorys" />
+    <EntitySet Name="Products" EntityType="weixinDBModel.Products" />
+    <EntitySet Name="Role" EntityType="weixinDBModel.Role" />
+    <EntitySet Name="Users" EntityType="weixinDBModel.Users" />
+    <EntitySet Name="WeiXinUserInfo" EntityType="weixinDBModel.WeiXinUserInfo" />
+    <EntitySet Name="WXUserBaseInfo" EntityType="weixinDBModel.WXUserBaseInfo" />
+    <EntitySet Name="WXUserGroup" EntityType="weixinDBModel.WXUserGroup" />
+    <EntitySet Name="ProductImgs" EntityType="weixinDBModel.ProductImgs" />
+    <AssociationSet Name="FK_Orders_Products" Association="weixinDBModel.FK_Orders_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductImgs_Products" Association="weixinDBModel.FK_ProductImgs_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductImgs" EntitySet="ProductImgs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tel1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Number" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Products" Relationship="weixinDBModel.FK_Orders_Products" FromRole="Orders" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="ProductCategorys">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Instruction" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="Creater" Type="Int32" />
+    <Property Name="Stock" Type="Int32" />
+    <NavigationProperty Name="Orders" Relationship="weixinDBModel.FK_Orders_Products" FromRole="Products" ToRole="Orders" />
+    <NavigationProperty Name="ProductImgs" Relationship="weixinDBModel.FK_ProductImgs_Products" FromRole="Products" ToRole="ProductImgs" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Instruction" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TrueName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="WeiXinUserInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AppID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AppSecret" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UserCount" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="LastTokenDate" Type="DateTime" Precision="3" />
+    <Property Name="AccessToken" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WXUserBaseInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subscribe" Type="Int32" />
+    <Property Name="openid" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="nickname" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="sex" Type="Int32" />
+    <Property Name="language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="headimgurl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="subscribe_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="groupid" Type="Int32" />
+    <Property Name="WXUserId" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="WXUserGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="WXUserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ProductImgs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PorductId" Type="Int32" />
+    <Property Name="FilePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Products" Relationship="weixinDBModel.FK_ProductImgs_Products" FromRole="ProductImgs" ToRole="Products" />
+  </EntityType>
+  <Association Name="FK_Orders_Products">
+    <End Type="weixinDBModel.Products" Role="Products" Multiplicity="0..1" />
+    <End Type="weixinDBModel.Orders" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductImgs_Products">
+    <End Type="weixinDBModel.Products" Role="Products" Multiplicity="0..1" />
+    <End Type="weixinDBModel.ProductImgs" Role="ProductImgs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductImgs">
+        <PropertyRef Name="PorductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
